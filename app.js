@@ -21,6 +21,7 @@ var DataRequest = (function () {
     return DataRequest;
 })();
 var PlayerData = function (id) {
+    return { "Hi": "hello!" };
     // Check defaults
     // 1) Load read only data
     var playerReadOnly = server.GetUserReadOnlyData(new DataRequest(id).With("Level", "Airplanes", "Exp", "Gold", "Silver", "NotFirstTime", "ForceReinit").Build());
