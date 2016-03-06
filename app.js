@@ -26,7 +26,7 @@ var SyncableObject = (function () {
                 this[keys[i]] = input.Data[this.ObjectKey() + "_" + keys[i]].Value;
             }
             else {
-                updated[this.ObjectKey() + "_" + keys[i]] = this[keys[i]];
+                updated[this.ObjectKey() + "_" + keys[i]] = this[keys[i]].toString();
             }
         }
         return updated;
@@ -37,11 +37,11 @@ var PlayerObject = (function (_super) {
     __extends(PlayerObject, _super);
     function PlayerObject() {
         _super.apply(this, arguments);
-        this.Exp = 0;
-        this.Gold = 0;
-        this.Level = 1;
-        this.Silver = 0;
-        this.Airplanes = 5;
+        this.Exp = "0";
+        this.Gold = "0";
+        this.Level = "1";
+        this.Silver = "0";
+        this.Airplanes = "5";
         this.Name = "Unnamed";
     }
     PlayerObject.prototype.ObjectKey = function () { return "Player"; };
@@ -51,11 +51,11 @@ var AirplaneObject = (function (_super) {
     __extends(AirplaneObject, _super);
     function AirplaneObject() {
         _super.apply(this, arguments);
-        this.Rank = 0;
-        this.Speed = 0;
-        this.Durability = 0;
-        this.Movement = 0;
-        this.AvailablePoint = 0;
+        this.Rank = "0";
+        this.Speed = "0";
+        this.Durability = "0";
+        this.Movement = "0";
+        this.AvailablePoint = "0";
     }
     AirplaneObject.prototype.ObjectKey = function () { return "Airplane"; };
     return AirplaneObject;
