@@ -54,7 +54,7 @@ var PlayerData = function (id) {
     });
     return result;
 };
-handlers.Hello = function () {
+handlers.Hello = function (args) {
     var data = PlayerData(currentPlayerId);
     return {
         PlayerData: data
