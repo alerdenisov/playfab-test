@@ -26,32 +26,32 @@ var PlayerData = function (id) {
         "Gold": "1",
         "Silver": "1"
     };
-    var result = {
-        "Level": playerReadOnly.Data["Level"].Value,
-        "Airplanes": playerReadOnly.Data["Airplanes"].Value,
-        "Exp": playerReadOnly.Data["Exp"].Value,
-        "Gold": playerReadOnly.Data["Gold"].Value,
-        "Silver": playerReadOnly.Data["Silver"].Value
-    };
+    var result = {};
     var update = {};
+    var force = !playerReadOnly.Data["NotFirstTime"] || !!playerReadOnly.Data["ForceReinit"];
     var CheckOrDefault = function (key, value) {
-        if (!playerReadOnly.Data[key] || !playerReadOnly.Data[key].Value)
+        if (force || !playerReadOnly.Data[key]) {
             result[key] = update[key] = value;
-    };
-    if (!playerReadOnly.Data["NotFirstTime"] || playerReadOnly.Data["ForceReinit"]) {
-        var keys = Object.keys(playerFieldsDefaults);
-        for (var i = 0; i < keys.length; i++) {
-            var key = keys[i];
-            var value = playerFieldsDefaults[key];
-            CheckOrDefault(key, value);
         }
-        update["NotFirstTime"] = "1";
-        update["ForceReinit"] = "";
-        server.UpdateUserReadOnlyData({
-            "PlayFabId": id,
-            "Data": JSON.stringify(update)
-        });
+        else if (playerReadOnly.Data[key]) {
+            result[key] = playerReadOnly.Data[key].Value;
+        }
+        else {
+            throw "1@!3123";
+        }
+    };
+    var keys = Object.keys(playerFieldsDefaults);
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var value = playerFieldsDefaults[key];
+        CheckOrDefault(key, value);
     }
+    update["NotFirstTime"] = "1";
+    update["ForceReinit"] = "";
+    server.UpdateUserReadOnlyData({
+        "PlayFabId": id,
+        "Data": JSON.stringify(update)
+    });
     return result;
 };
 handlers.Hello = function () {
