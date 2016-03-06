@@ -1,6 +1,7 @@
 var DataRequest = (function () {
     function DataRequest(PlayFabId) {
         this.PlayFabId = PlayFabId;
+        this.Keys = [];
     }
     DataRequest.prototype.With = function () {
         var keys = [];
