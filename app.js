@@ -13,12 +13,17 @@ var DataRequest = (function () {
         }
         return this;
     };
+    DataRequest.prototype.Build = function () {
+        var request = { PlayFabId: this.PlayFabId };
+        request.Keys = this.Keys;
+        return request;
+    };
     return DataRequest;
 })();
 var PlayerData = function (id) {
     // Check defaults
     // 1) Load read only data
-    var playerReadOnly = server.GetUserReadOnlyData(new DataRequest(id).With("Level", "Airplanes", "Exp", "Gold", "Silver", "NotFirstTime", "ForceReinit"));
+    var playerReadOnly = server.GetUserReadOnlyData(new DataRequest(id).With("Level", "Airplanes", "Exp", "Gold", "Silver", "NotFirstTime", "ForceReinit").Build());
     var playerFieldsDefaults = {
         "Level": "1",
         "Airplanes": "5",
