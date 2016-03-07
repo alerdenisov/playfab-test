@@ -82,14 +82,30 @@ var DataRequest = (function () {
     };
     return DataRequest;
 })();
+var objectsMerge = function () {
+    var objects = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        objects[_i - 0] = arguments[_i];
+    }
+    var result = {};
+    for (var i = 0; i < objects.length; i++) {
+        for (var attribute in objects[i]) {
+            result[attribute] = objects[i][attribute];
+        }
+    }
+    return result;
+};
 var PlayerData = function (id) {
     // Check defaults
     // 1) Load read only data
     var player = new PlayerObject();
+    var airplane = new AirplaneObject();
     var request = { PlayFabId: _this };
     var playerReadOnly = server.GetUserReadOnlyData(request);
-    var update = player.Deserialize(playerReadOnly);
-    var result = player.Straight();
+    var playerUpdate = player.Deserialize(playerReadOnly);
+    var airplaneUpdate = airplane.Deserialize(playerReadOnly);
+    var update = objectsMerge(playerUpdate, airplaneUpdate);
+    var result = objectsMerge(player.Straight(), airplane.Straight());
     update["NotFirstTime"] = "1";
     update["ForceReinit"] = "";
     server.UpdateUserReadOnlyData({
@@ -99,16 +115,9 @@ var PlayerData = function (id) {
     return result;
 };
 handlers.Hello = function (args) {
-    //var data = PlayerData(currentPlayerId);
-    var player = new PlayerObject();
-    player.Exp = "1";
-    player.Airplanes = "5";
-    player.Gold = "1000";
-    player.Level = "10";
-    player.Name = "xxNAGIBxx";
-    player.Silver = "10000";
+    var data = PlayerData(currentPlayerId);
     return {
-        PlayerData: player.Straight()
+        PlayerData: data
     };
 };
 //# sourceMappingURL=app.js.map
