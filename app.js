@@ -103,16 +103,18 @@ var PlayerData = function (id) {
     var request = { PlayFabId: _this };
     var playerReadOnly = server.GetUserReadOnlyData(request);
     log.info(playerReadOnly);
-    var playerUpdate = player.Deserialize(playerReadOnly);
-    var airplaneUpdate = airplane.Deserialize(playerReadOnly);
-    var update = objectsMerge(playerUpdate, airplaneUpdate);
+    //    var playerUpdate = player.Deserialize(playerReadOnly);
+    //    var airplaneUpdate = airplane.Deserialize(playerReadOnly);
+    //
+    //    var update: IStringDictionary = objectsMerge(playerUpdate, airplaneUpdate);
     var result = objectsMerge(player.Straight(), airplane.Straight());
-    update["NotFirstTime"] = "1";
-    update["ForceReinit"] = "";
-    server.UpdateUserReadOnlyData({
-        "PlayFabId": id,
-        "Data": update
-    });
+    //    update["NotFirstTime"] = "1";
+    //    update["ForceReinit"] = "";
+    //
+    //    server.UpdateUserReadOnlyData({
+    //        "PlayFabId": id,
+    //        "Data": update
+    //    });
     return result;
 };
 handlers.Hello = function (args) {
