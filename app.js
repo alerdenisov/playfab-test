@@ -99,21 +99,20 @@ var PlayerData = function (id) {
     // 1) Load read only data
     var player = new PlayerObject();
     var airplane = new AirplaneObject();
-    //var request: IDataRequest = { PlayFabId: this };
-    //var playerReadOnly: IPlayerDataCollection = server.GetUserReadOnlyData(request);
-    //log.info(playerReadOnly);
-    //    var playerUpdate = player.Deserialize(playerReadOnly);
-    //    var airplaneUpdate = airplane.Deserialize(playerReadOnly);
+    var request = { PlayFabId: id };
+    var playerReadOnly = server.GetUserReadOnlyData(request);
+    log.info(playerReadOnly);
+    var playerUpdate = player.Deserialize(playerReadOnly);
+    var airplaneUpdate = airplane.Deserialize(playerReadOnly);
     //
-    //    var update: IStringDictionary = objectsMerge(playerUpdate, airplaneUpdate);
+    var update = objectsMerge(playerUpdate, airplaneUpdate);
     var result = objectsMerge(player.Straight(), airplane.Straight());
-    //    update["NotFirstTime"] = "1";
-    //    update["ForceReinit"] = "";
-    //
-    //    server.UpdateUserReadOnlyData({
-    //        "PlayFabId": id,
-    //        "Data": update
-    //    });
+    update["NotFirstTime"] = "1";
+    update["ForceReinit"] = "";
+    server.UpdateUserReadOnlyData({
+        "PlayFabId": id,
+        "Data": update
+    });
     return result;
 };
 handlers.Hello = function (args) {
