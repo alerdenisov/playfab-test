@@ -3,7 +3,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var _this = this;
 var SyncableObject = (function () {
     function SyncableObject() {
     }
@@ -100,9 +99,9 @@ var PlayerData = function (id) {
     // 1) Load read only data
     var player = new PlayerObject();
     var airplane = new AirplaneObject();
-    var request = { PlayFabId: _this };
-    var playerReadOnly = server.GetUserReadOnlyData(request);
-    log.info(playerReadOnly);
+    //var request: IDataRequest = { PlayFabId: this };
+    //var playerReadOnly: IPlayerDataCollection = server.GetUserReadOnlyData(request);
+    //log.info(playerReadOnly);
     //    var playerUpdate = player.Deserialize(playerReadOnly);
     //    var airplaneUpdate = airplane.Deserialize(playerReadOnly);
     //
