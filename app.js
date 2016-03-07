@@ -102,6 +102,7 @@ var PlayerData = function (id) {
     var airplane = new AirplaneObject();
     var request = { PlayFabId: _this };
     var playerReadOnly = server.GetUserReadOnlyData(request);
+    log.info(playerReadOnly);
     var playerUpdate = player.Deserialize(playerReadOnly);
     var airplaneUpdate = airplane.Deserialize(playerReadOnly);
     var update = objectsMerge(playerUpdate, airplaneUpdate);
