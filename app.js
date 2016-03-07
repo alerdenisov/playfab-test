@@ -99,9 +99,16 @@ var PlayerData = function (id) {
     return result;
 };
 handlers.Hello = function (args) {
-    var data = PlayerData(currentPlayerId);
+    //var data = PlayerData(currentPlayerId);
+    var player = new PlayerObject();
+    player.Exp = "1";
+    player.Airplanes = "5";
+    player.Gold = "1000";
+    player.Level = "10";
+    player.Name = "xxNAGIBxx";
+    player.Silver = "10000";
     return {
-        PlayerData: data
+        PlayerData: player.Straight()
     };
 };
 //# sourceMappingURL=app.js.map
