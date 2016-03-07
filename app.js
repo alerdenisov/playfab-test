@@ -41,7 +41,7 @@ var PlayerObject = (function (_super) {
         this.Gold = "0";
         this.Level = "1";
         this.Silver = "0";
-        this.Airplanes = "5";
+        this.Flyes = "5";
         this.Name = "Unnamed";
     }
     PlayerObject.prototype.ObjectKey = function () { return "Player"; };
